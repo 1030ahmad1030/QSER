@@ -1,0 +1,239 @@
+<h1>QSER: Source-Environment-Response Framework</h1>
+<p><img src="https://raw.githubusercontent.com/1030ahmad1030/QSER/main/QSER/QSER%20logo.png" alt="QSER Logo"></p>
+<p><strong>A Data Physics Framework for Forward and Inverse Modeling of Physical Systems using Scientific Machine Learning, Classical and Hybrid Methods</strong></p>
+<p><a href="https://github.com/1030ahmad1030/QSER" rel="nofollow"><img src="https://img.shields.io/badge/GitHub-1030ahmad1030/QSER-blue" alt="GitHub"></a>
+<a href="https://pypi.org/project/QSER/" rel="nofollow"><img src="https://img.shields.io/badge/PyPI-QSER-blue" alt="PyPI"></a>
+<a href="https://opensource.org/licenses/MIT" rel="nofollow"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://python.org" rel="nofollow"><img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python"></a>
+<a href="https://ahmadmuhammad325.com/" rel="nofollow"><img src="https://img.shields.io/badge/Website-ahmadmuhammad325.com-blue" alt="Website"></a></p>
+<hr>
+<h2>About QSER</h2>
+<p><strong>The Memory "Q", Source "S", Environment "E", Response "R"</strong></p>
+<p><strong>QSER</strong> is a Data Physics tool for forward and inverse modeling and forecasting of physical systems. It includes QSER tools like:</p>
+<ul>
+<li><strong>Mesh &amp; Geometry</strong> — Structured 1D/2D/3D meshes + STL/CAD geometry import</li>
+<li><strong>Operators</strong> — Gradient, Laplacian, Divergence, Curl, TimeGradient</li>
+<li><strong>Backends</strong> — NumPy, PyTorch, JAX, OpenFOAM</li>
+<li><strong>Energy Tracking</strong> — ε_S, ε_E, ε_R, J_SE, D_E</li>
+<li><strong>QSER Decomposition</strong> — R = S - E, L = Lc + Ld</li>
+<li><strong>Integration Engine</strong> — Trapezoidal, Simpson, Monte Carlo, Quasi-Monte Carlo</li>
+<li><strong>Boundary Conditions</strong> — Dirichlet, Neumann, Robin, Periodic, Wall, Source</li>
+<li><strong>Physics Solver engines</strong></li>
+</ul>
+<hr>
+<h2>Core Equations</h2>
+<p>The QSER framework is built on four fundamental equations that lead to the extraction of system memory (Green's function "Q"):</p>
+<table>
+<thead>
+<tr>
+<th>Equation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>R = S - E</strong></td>
+<td>Fundamental decomposition of the observed field</td>
+</tr>
+<tr>
+<td><strong>L = Lc + Ld</strong></td>
+<td>Operator split (conservative + dissipative)</td>
+</tr>
+<tr>
+<td><strong>Lc S = F</strong></td>
+<td>Source equation — the conservative "ghost" field</td>
+</tr>
+<tr>
+<td><strong>L E = Ld S</strong></td>
+<td>Environment accumulator — the environment possesses the history of all interactions with the source and stores it in its memory "Q"</td>
+</tr>
+</tbody>
+</table>
+<h3>The Bank Account Analogy</h3>
+<p>Think of QSER like a bank account:</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>QSER Equivalent</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Salary</td>
+<td><strong>S</strong> (Source)</td>
+<td>What you earn (conservative ghost)</td>
+</tr>
+<tr>
+<td>Spending</td>
+<td><strong>E</strong> (Environment)</td>
+<td>What you spend (memory accumulator)</td>
+</tr>
+<tr>
+<td>Balance</td>
+<td><strong>R</strong> (Response)</td>
+<td>What remains (observed field)</td>
+</tr>
+<tr>
+<td>Bank Statement</td>
+<td><strong>Q</strong> (Memory)</td>
+<td>Dictates the history of all transactions between the source and the environment</td>
+</tr>
+</tbody>
+</table>
+<p>The balance (Response) is always the difference between what you earn and what you spend:
+<strong>Balance = Salary — Spending</strong> → <strong>R = S - E</strong></p>
+<hr>
+<h2>Installation</h2>
+<h3>Base Installation</h3>
+<pre lang="bash">pip<span class="w"> </span>install<span class="w"> </span>QSER
+</pre>
+<h3>With PyTorch Backend</h3>
+<pre lang="bash">pip<span class="w"> </span>install<span class="w"> </span>QSER<span class="o">[</span>torch<span class="o">]</span>
+</pre>
+<h3>With JAX Backend</h3>
+<pre lang="bash">pip<span class="w"> </span>install<span class="w"> </span>QSER<span class="o">[</span>jax<span class="o">]</span>
+</pre>
+<h3>With All Backends</h3>
+<pre lang="bash">pip<span class="w"> </span>install<span class="w"> </span>QSER<span class="o">[</span>all<span class="o">]</span>
+</pre>
+<h3>From Source</h3>
+<pre lang="bash">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/1030ahmad1030/QSER.git
+<span class="nb">cd</span><span class="w"> </span>QSER
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre>
+<hr>
+<h2>Quick Start</h2>
+<h3>1D Mesh and Gradient</h3>
+<pre lang="python3"><span class="kn">import</span><span class="w"> </span><span class="nn">QSER</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Create mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">qs</span><span class="o">.</span><span class="n">Mesh</span><span class="o">.</span><span class="n">Structured1D</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">get_cell_centers</span><span class="p">()</span>
+
+<span class="c1"># Create field</span>
+<span class="n">field</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Compute gradient (independent operator)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">QSER.Operators</span><span class="w"> </span><span class="kn">import</span> <span class="n">Gradient</span>
+<span class="n">grad</span> <span class="o">=</span> <span class="n">Gradient</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">'numpy'</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'5point'</span><span class="p">)</span>
+<span class="n">df_dx</span> <span class="o">=</span> <span class="n">grad</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'sin(x)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df_dx</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'cos(x) (numerical)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre>
+<h3>2D Poisson Equation (Electrostatics)</h3>
+<pre lang="python3"><span class="kn">from</span><span class="w"> </span><span class="nn">QSER.Mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Structured2D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">QSER.Mesh.boundary</span><span class="w"> </span><span class="kn">import</span> <span class="n">Boundary</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">QSER.Operators</span><span class="w"> </span><span class="kn">import</span> <span class="n">Laplacian</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Create mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Structured2D</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">Lx</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">Ly</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">get_cell_centers</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">mesh</span><span class="o">.</span><span class="n">get_cell_centers</span><span class="p">()[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Charge density (Gaussian)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="mf">2.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">Y</span><span class="o">-</span><span class="mf">2.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Build Laplacian matrix</span>
+<span class="n">lap</span> <span class="o">=</span> <span class="n">Laplacian</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">mesh</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">'numpy'</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'3point'</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">nx</span> <span class="o">*</span> <span class="n">mesh</span><span class="o">.</span><span class="n">ny</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">nx</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">ny</span><span class="p">):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">mesh</span><span class="o">.</span><span class="n">ny</span> <span class="o">+</span> <span class="n">j</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">mesh</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">ny</span><span class="p">))</span>
+        <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">L</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">lap</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Apply BCs and solve</span>
+<span class="c1"># (Full example in tutorials)</span>
+</pre>
+<h3>Energy Tracking</h3>
+<pre lang="python3"><span class="kn">from</span><span class="w"> </span><span class="nn">QSER.Energy</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnergyTracker</span>
+
+<span class="n">tracker</span> <span class="o">=</span> <span class="n">EnergyTracker</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">'numpy'</span><span class="p">)</span>
+<span class="n">eps_S</span> <span class="o">=</span> <span class="n">tracker</span><span class="o">.</span><span class="n">epsilon_S</span><span class="p">(</span><span class="n">S_field</span><span class="p">)</span>
+<span class="n">eps_E</span> <span class="o">=</span> <span class="n">tracker</span><span class="o">.</span><span class="n">epsilon_E</span><span class="p">(</span><span class="n">E_field</span><span class="p">)</span>
+<span class="n">eps_R</span> <span class="o">=</span> <span class="n">tracker</span><span class="o">.</span><span class="n">epsilon_R</span><span class="p">(</span><span class="n">R_field</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Source Energy: </span><span class="si">{</span><span class="n">eps_S</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Environment Energy: </span><span class="si">{</span><span class="n">eps_E</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Response Energy: </span><span class="si">{</span><span class="n">eps_R</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre>
+<hr>
+<h2>Tutorials</h2>
+<table>
+<thead>
+<tr>
+<th>Notebook</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1D Mesh Tutorial</code></td>
+<td>Mesh creation, operators, boundary conditions</td>
+</tr>
+<tr>
+<td><code>2D Mesh and geometry</code></td>
+<td>2D mesh, geometry, interpolation</td>
+</tr>
+<tr>
+<td><code>3D qser tutorial</code></td>
+<td>3D mesh and operators</td>
+</tr>
+<tr>
+<td><code>Energy tutorial qser</code></td>
+<td>EnergyTracker, IntegrationEngine</td>
+</tr>
+<tr>
+<td><code>QSER tutorial 3</code></td>
+<td>PDE solvers (Poisson, Heat, Wave)</td>
+</tr>
+<tr>
+<td><code>QSER tutorial 4</code></td>
+<td>Advanced topics</td>
+</tr>
+</tbody>
+</table>
+<p>The notebooks are available in the <code>examples/</code> folder.</p>
+<hr>
+<h2>Documentation</h2>
+<ul>
+<li><strong>User Guide</strong>: <a href="https://qser.readthedocs.io" rel="nofollow">https://qser.readthedocs.io</a></li>
+<li><strong>API Reference</strong>: <a href="https://qser.readthedocs.io/api" rel="nofollow">https://qser.readthedocs.io/api</a></li>
+<li><strong>GitHub</strong>: <a href="https://github.com/1030ahmad1030/QSER" rel="nofollow">https://github.com/1030ahmad1030/QSER</a></li>
+<li><strong>Website</strong>: <a href="https://www.ahmadmuhammad325.com" rel="nofollow">https://www.ahmadmuhammad325.com</a></li>
+</ul>
+<hr>
+<h2>License</h2>
+<p>This project is licensed under the <strong>MIT License</strong>.</p>
+<hr>
+<h2>Citation</h2>
+<p>If you use QSER in your research, please cite:</p>
+<pre lang="bibtex"><span class="nc">@software</span><span class="p">{</span><span class="nl">muhammad2026qser</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Muhammad, Ahmad and K\"ulahc{\i}, Fatih}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{QSER: A Data Physics Framework for Forward and Inverse Modeling of Physical Systems}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2026}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://github.com/1030ahmad1030/QSER}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{1.0.0}</span>
+<span class="p">}</span>
+</pre>
+<hr>
+<h2>Acknowledgments</h2>
+<p>The authors acknowledge the use of <strong>DeepSeek AI</strong> as a development assistant in the implementation of this framework.</p>
+<p>The authors thank <strong>Qatar University</strong> and <strong>ASELSAN</strong> for their support.</p>
+<hr>
+<h2>Related Frameworks</h2>
+<ul>
+<li><strong>QSignature</strong>: Model-free dynamical regime classification for time series data (<a href="https://github.com/1030ahmad1030/QSignature" rel="nofollow">GitHub</a>)</li>
+</ul>
+<hr>
+

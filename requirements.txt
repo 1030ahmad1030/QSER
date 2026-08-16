@@ -1,0 +1,23 @@
+# QSER v1.0.0 Requirements
+
+# Core dependencies
+numpy>=1.24.0
+scipy>=1.10.0
+matplotlib>=3.6.0
+
+# Optional dependencies (for specific backends)
+torch>=2.0.0  # PyTorch backend
+jax>=0.4.0    # JAX backend
+jaxlib>=0.4.0 # JAX library
+foamlib>=0.5.0  # OpenFOAM interface
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Documentation
+sphinx>=6.0.0
+sphinx-rtd-theme>=1.0.0
+
+# QSignature (for validation)
+QSignature>=1.0.6

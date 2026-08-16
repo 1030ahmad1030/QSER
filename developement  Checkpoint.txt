@@ -1,0 +1,1159 @@
+cat > "/home/ahmad/Yandex.Disk/Python 2026/Qtheory_library/QSER continue/QSER v1.0.0/checkpoint.txt" << 'EOF'
+================================================================================
+QSER FRAMEWORK DEVELOPMENT CHECKPOINT
+================================================================================
+Version: 4.0.0
+Date: 2026-08-13
+Status: Phase 1 Release Ready
+
+================================================================================
+AUTHORS
+================================================================================
+
+Primary Author:
+  Name: Ahmad Muhammad
+  Affiliation: Qatar University, Department of Physics and Materials Sciences
+  Email: ahmad.muhammad@qu.edu.qa
+  Website: https://ahmadmuhammad325.com/about
+  ORCID: 0009-0001-2152-3648
+
+Co-Author / Supervisor:
+  Name: Fatih K�lahc�
+  Affiliation: ASELSAN Electronic Industry and Trade Joint Stock Company
+  Email: fatihkulahci@gmail.com
+
+Acknowledgments:
+  - DeepSeek AI (development assistant)
+  - Qatar University
+  - ASELSAN
+
+================================================================================
+PROJECT INFORMATION
+================================================================================
+
+Project Name: QSER (Source-Environment-Response) Framework
+Repository: https://github.com/1030ahmad1030/QSER
+QSignature (Sister Framework): https://github.com/1030ahmad1030/QSignature
+License: MIT
+
+Project Root:
+  /home/ahmad/Yandex.Disk/Python 2026/Qtheory_library/QSER continue/QSER v1.0.0/
+
+Book Directory:
+  /home/ahmad/Yandex.Disk/Research/Q theory/QSER solver 2026/QSER user guide book/
+
+Figures Directory:
+  /home/ahmad/Yandex.Disk/Research/Q theory/QSER solver 2026/QSER user guide book/figures/
+
+================================================================================
+CORE PHILOSOPHY
+================================================================================
+
+QSER Decomposition:
+  R = S - E
+  L = Lc + Ld
+  LE = LdS
+  LcS = F
+
+Any Method. Any Backend. One Decomposition.
+
+Q = Memory (fundamental quantity connecting all QTheory frameworks)
+
+================================================================================
+CURRENT STATUS: PHASE 1 RELEASE READY ✅
+================================================================================
+
+| Component | Status | Location |
+|-----------|--------|----------|
+| Core Philosophy | ✅ Complete | - |
+| 4 Validation Tests | ✅ Complete | QSER/Validation/ |
+| Backend System (NumPy, PyTorch, JAX) | ✅ Complete | QSER/Backends/ |
+| Structured Mesh (1D, 2D, 3D) | ✅ Complete | QSER/Mesh/ |
+| Gradient Engine | ✅ Complete | QSER/Operators/gradient.py |
+| Laplacian Engine | ✅ Complete | QSER/Operators/laplacian.py |
+| Divergence Engine | ✅ Complete | QSER/Operators/divergence.py |
+| Curl Engine | ✅ Complete | QSER/Operators/curl.py |
+| Interpolation Engine | ✅ Complete | QSER/Mesh/interpolation/ |
+| Boundary Engine | ✅ Complete | QSER/Mesh/boundary/ |
+| Quality Engine | ✅ Complete | QSER/Mesh/quality/ |
+| Operators Engine | ✅ Complete | QSER/Operators/ |
+| Energy Tracker | ✅ Complete | QSER/Energy/energy_tracker.py |
+| Integration Engine | ✅ Complete | QSER/Energy/integration.py |
+| Physics Module | ✅ Complete | QSER/PINNs/physics/ |
+| Field Coefficients | ✅ Complete | TransportPINN (v, D, λ, F) |
+| JAX Backend Support | ✅ Complete | QSER/Backends/JAXBackend.py |
+| NumPy Backend Support | ✅ Complete | QSER/Backends/NumPyBackend.py |
+| PyTorch Backend Support | ✅ Complete | QSER/Backends/TorchBackend.py |
+| Solver Coupling | ✅ Complete | QSER/Coupling/ |
+| Solver Modification | ✅ Complete | QSER/Modification/ |
+| Multi-Method Solvers | ✅ Complete | QSER/MultiMethod/ |
+
+================================================================================
+PHASE 1 RELEASE: QSERPINN (IMMEDIATE)
+================================================================================
+
+GOAL: Implement and release QSERPINN class.
+
+QSERPINN FEATURES:
+  - Mesh-independent (works on STL/CAD point clouds)
+  - Two modes: standard (LR=F) and qser (LcS=F, LE=LdS)
+  - Forward and inverse problems
+  - PyTorch and JAX backends
+  - Steady-state and time-dependent
+  - 4 QSER validation tests
+  - Energy tracking (ε_S, ε_E, ε_R, J_SE, D_E)
+  - VTK, CSV, HDF5 export
+  - Built-in plotting
+
+USER EXPERIENCE:
+  from QSER import QSERPINN
+  from QSER.Geometry import Geometry
+  from QSER.PINNs.physics import TransportPINN
+  
+  geo = Geometry.from_stl('room.stl')
+  physics = TransportPINN(v=0.1, D=0.05, lambda_=0.01, F=1.0)
+  
+  pinn = QSERPINN(geo, physics, mode='qser', backend='torch')
+  pinn.set_model(MyNN())
+  pinn.sample_points(10000, 2000)
+  pinn.train(epochs=10000)
+  S, E, R = pinn.predict(new_points)
+  validation = pinn.validate(S, E, R)
+
+================================================================================
+PHASE 2: DOCUMENTATION & EXAMPLES (NEXT 2-4 WEEKS)
+================================================================================
+
+| Feature | Priority | Status |
+|---------|----------|--------|
+| User Guide Book | High | 🔜 Write |
+| Quick Start Guide | High | 🔜 Write |
+| Examples (2D circle, 3D room) | High | 🔜 Create |
+| API Reference | High | 🔜 Write |
+| Jupyter Notebooks | Medium | 🔜 Create |
+| Video Tutorials | Medium | 🔜 Create |
+| PyPI Release | High | 🔜 Upload |
+
+================================================================================
+PHASE 3: COMMUNITY GROWTH (ONGOING)
+================================================================================
+
+1. GitHub Repository (with README, examples)
+2. Documentation (ReadTheDocs)
+3. PyPI package (pip install qser)
+4. Community (Discord/Slack)
+5. Academic paper (Journal of Computational Physics)
+6. Contributing guidelines
+
+================================================================================
+THE COMPETITIVE ADVANTAGE
+================================================================================
+
+| Framework | PINNs | Any Geometry | No Mesh | QSER | Energy | Free |
+|-----------|-------|--------------|---------|------|--------|------|
+| QSER | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| DeepXDE | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| NVIDIA Modulus | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| FEniCS | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| OpenFOAM | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ |
+| ANSYS | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+
+QSER IS UNIQUE. NO ONE ELSE OFFERS:
+  - PINNs on ANY geometry (no mesh!)
+  - QSER decomposition (S, E, R separated)
+  - Energy tracking
+  - 4 validation tests
+  - Stand-alone operators
+  - PyTorch/JAX backends
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+PHASE 1 (IMMEDIATE):
+  [ ] Implement QSERPINN class
+  [ ] Add gradient_method parameter to TransportPINN
+  [ ] Add integration_method parameter to TransportPINN
+  [ ] Test QSERPINN with 2D Poisson equation
+  [ ] Test QSERPINN with 2D diffusion equation
+  [ ] Test QSERPINN with 3D wave equation
+  [ ] Write QSERPINN user guide section
+
+PHASE 2 (NEXT 2-4 WEEKS):
+  [ ] Write Quick Start Guide
+  [ ] Create examples (2D circle, 3D room)
+  [ ] Build documentation (ReadTheDocs)
+  [ ] Upload to PyPI
+  [ ] Create Jupyter notebooks
+  [ ] Video tutorials
+
+PHASE 3 (ONGOING):
+  [ ] Community building
+  [ ] Academic paper
+  [ ] Contributing guidelines
+
+================================================================================
+PRODUCTION RULES
+================================================================================
+
+1. BUILD -> TEST -> PROCEED
+   Never move forward without passing tests.
+
+2. ONE CODE AT A TIME
+   Only one Python or Linux command/code per response unless approved.
+
+3. TEST FIRST
+   Always test in Jupyter-Lab before catting to the library.
+
+4. USER EXPERIENCE FIRST
+   Describe user experience before writing any code.
+
+5. DOCUMENT EVERYTHING
+   Every feature must be documented in the book.
+
+6. INDUSTRY GRADE
+   All features must meet industry standards (Fluent, OpenFOAM).
+
+7. BACKEND-AGNOSTIC
+   All operators must work with NumPy, PyTorch, and JAX.
+
+8. AUTOGARD SUPPORT
+   PyTorch and JAX backends must preserve autograd.
+
+9. RELEASE EARLY, RELEASE OFTEN
+   Ship working code NOW. Iterate later.
+
+10. COMMUNITY FIRST
+   Build for users, not for perfection.
+
+================================================================================
+QSERPINN CLASS DEFINITION
+================================================================================
+
+class QSERPINN:
+    def __init__(
+        self,
+        geometry: Geometry,
+        physics: PhysicsBase,
+        mode: str = 'qser',           # 'standard' or 'qser'
+        method: str = 'forward',      # 'forward' or 'inverse'
+        backend: str = 'torch',       # 'torch' or 'jax'
+        device: str = 'auto',         # 'auto', 'cuda:0', 'cpu'
+        learn_physics: bool = False,
+        parameter_type: str = 'constants',  # 'constants' or 'fields'
+        precision: str = 'float32'    # 'float32' or 'float64'
+    ):
+        pass
+    
+    def set_model(self, model: nn.Module) -> None:
+        pass
+    
+    def sample_points(self, n_interior: int, n_boundary: int, **kwargs) -> None:
+        pass
+    
+    def set_physics_weights(self, **kwargs) -> None:
+        pass
+    
+    def set_data_weights(self, **kwargs) -> None:
+        pass
+    
+    def train(self, epochs: int, learning_rate: float = 1e-3, **kwargs) -> dict:
+        pass
+    
+    def predict(self, points: np.ndarray, t: float = None) -> tuple:
+        pass
+    
+    def validate(self, S: np.ndarray, E: np.ndarray, R: np.ndarray, **kwargs) -> dict:
+        pass
+    
+    def compute_energies(self, S: np.ndarray, E: np.ndarray, R: np.ndarray) -> dict:
+        pass
+    
+    def export_vtk(self, filename: str, **kwargs) -> None:
+        pass
+    
+    def save(self, path: str) -> None:
+        pass
+    
+    def load(self, path: str) -> None:
+        pass
+
+================================================================================
+TRANSPORTPINN SIGNATURE (Updated)
+================================================================================
+
+class TransportPINN(PhysicsBase):
+    def __init__(
+        self,
+        v=0.1,
+        D=0.05,
+        lambda_=0.01,
+        F=1.0,
+        backend='torch',
+        gradient_method='5point',        # ← NEW: '5point', 'least_squares'
+        integration_method='trapezoidal', # ← NEW: 'trapezoidal', 'simpson', 'monte_carlo'
+        n_samples=10000                  # ← NEW: for Monte Carlo
+    ):
+        pass
+
+================================================================================
+RESURRECTION PROTOCOL
+================================================================================
+
+If this chat ends, to resume work:
+
+1. Open this checkpoint file
+2. Identify the current phase (NEXT STEPS section above)
+3. Tell me: "We are at Phase X, Task Y"
+4. I will resume from exactly that point
+
+To provide context, share:
+- The current phase
+- The last completed task
+- Any errors encountered
+
+I will be able to resume immediately.
+
+================================================================================
+END OF CHECKPOINT
+================================================================================
+Date: 2026-08-13
+Version: 4.0.0
+Status: Phase 1 Release Ready
+
+Any Method. Any Backend. One Decomposition.
+R = S - E, LE = LdS, LcS = F
+
+RELEASE EARLY. RELEASE OFTEN. SHIP NOW.
+================================================================================
+EOF
+
+
+
+#########################################################
+# QSERPINN User Experience — Complete
+
+## Introduction
+
+QSERPINN is the main class that ties together all QSER components: Geometry, Physics, Operators, Energy Tracking, and Validation. It provides a unified interface for solving PDEs with Physics-Informed Neural Networks (PINNs) on **any geometry without requiring a mesh**.
+
+---
+
+## Installation
+
+```bash
+pip install qser
+```
+
+---
+
+## Quick Start
+
+```python
+from QSER import QSERPINN
+from QSER.Geometry import Geometry
+from QSER.PINNs.physics import TransportPINN
+import torch.nn as nn
+import torch
+
+# 1. Import geometry (no mesh!)
+geo = Geometry.from_stl('room.stl')
+
+# 2. Define physics
+physics = TransportPINN(v=0.1, D=0.05, lambda_=0.01, F=1.0)
+
+# 3. Define neural network (S, E, R)
+class MyNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(3, 64), nn.Tanh(),  # (x, y, z, t) → 3 inputs
+            nn.Linear(64, 64), nn.Tanh(),
+            nn.Linear(64, 64), nn.Tanh(),
+            nn.Linear(64, 3)               # S, E, R
+        )
+    def forward(self, x, y, z, t):
+        return self.net(torch.cat([x, y, z, t], dim=-1))
+
+# 4. Create and train
+pinn = QSERPINN(geo, physics, mode='qser', backend='torch')
+pinn.set_model(MyNN())
+pinn.sample_points(10000, 2000)
+pinn.train(epochs=10000)
+
+# 5. Predict
+S, E, R = pinn.predict(new_points)
+
+# 6. Validate
+validation = pinn.validate(S, E, R)
+print(f"All passed: {validation['all_passed']}")
+```
+
+---
+
+## Complete User Experience
+
+### 1. Import Geometry
+
+```python
+from QSER.Geometry import Geometry
+
+# From file
+geo = Geometry.from_stl('room.stl')
+geo = Geometry.from_cad('airfoil.step')
+geo = Geometry.from_obj('model.obj')
+geo = Geometry.from_off('model.off')
+
+# From point cloud
+geo = Geometry.from_csv('points.csv')
+geo = Geometry.from_excel('data.xlsx')
+geo = Geometry.from_points(points, boundary_indices)
+
+# Mathematical domain
+def inside(x, y, z):
+    return (x/2)**2 + (y/3)**2 + (z/1.5)**2 < 1
+geo = Geometry.define(inside=inside)
+
+# Built-in geometries
+geo = Geometry.sphere(radius=1.0)
+geo = Geometry.cube(size=2.0)
+geo = Geometry.cylinder(radius=0.5, height=2.0)
+
+# Get geometry info
+volume = geo.volume()
+bounds = geo.bounding_box()
+```
+
+### 2. Define Physics
+
+```python
+from QSER.PINNs.physics import TransportPINN
+
+# Constant coefficients
+physics = TransportPINN(
+    v=0.1,
+    D=0.05,
+    lambda_=0.01,
+    F=1.0
+)
+
+# Field coefficients
+physics = TransportPINN(
+    v=lambda x, t: 0.1 + 0.3 * torch.sin(2 * torch.pi * x[..., 0] / 10.0),
+    D=lambda x, t: 0.02 + 0.01 * torch.exp(-(x[..., 0] - 5)**2 / 2),
+    lambda_=0.01,
+    F=lambda x, t: 2.0 * torch.exp(-((x[..., 0] - 5)**2 + (x[..., 1] - 5)**2) / 0.5)
+)
+
+# Custom physics
+from QSER.PINNs.physics import CustomPhysics
+
+def my_Lc(field, x, t):
+    field_t = torch.autograd.grad(field, t, ...)[0]
+    return field_t
+
+def my_Ld(field, x, t):
+    lap = Laplacian()
+    return -lap.compute(field, x)
+
+physics = CustomPhysics(
+    Lc=my_Lc,
+    Ld=my_Ld,
+    source=lambda x, t: 0.0
+)
+```
+
+### 3. Define Neural Network
+
+```python
+import torch.nn as nn
+import torch
+
+# Standard mode (R only)
+class StandardNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(3, 64), nn.Tanh(),  # (x, y, z, t)
+            nn.Linear(64, 64), nn.Tanh(),
+            nn.Linear(64, 64), nn.Tanh(),
+            nn.Linear(64, 1)               # R only
+        )
+    def forward(self, x, y, z, t):
+        return self.net(torch.cat([x, y, z, t], dim=-1))
+
+# QSER mode (S, E, R)
+class QSERNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(3, 64), nn.Tanh(),
+            nn.Linear(64, 64), nn.Tanh(),
+            nn.Linear(64, 64), nn.Tanh(),
+            nn.Linear(64, 3)               # S, E, R
+        )
+    def forward(self, x, y, z, t):
+        return self.net(torch.cat([x, y, z, t], dim=-1))
+
+# Steady-state (no time)
+class SteadyNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(2, 64), nn.Tanh(),  # (x, y) only
+            nn.Linear(64, 64), nn.Tanh(),
+            nn.Linear(64, 64), nn.Tanh(),
+            nn.Linear(64, 1)
+        )
+    def forward(self, x, y, t=None):
+        return self.net(torch.cat([x, y], dim=-1))
+```
+
+### 4. Create QSERPINN
+
+```python
+from QSER import QSERPINN
+
+pinn = QSERPINN(
+    geometry=geo,
+    physics=physics,
+    mode='qser',            # 'standard' or 'qser'
+    method='forward',       # 'forward' or 'inverse'
+    backend='torch',        # 'torch' or 'jax'
+    device='auto',          # 'auto', 'cuda:0', 'cpu'
+    learn_physics=False,    # True for inverse problems
+    parameter_type='constants',  # 'constants' or 'fields'
+    precision='float32'     # 'float32', 'float64'
+)
+
+pinn.set_model(MyNN())
+```
+
+### 5. Sample Points
+
+```python
+# Time-dependent (default)
+pinn.sample_points(
+    n_interior=10000,
+    n_boundary=2000,
+    interior_method='random',      # 'random', 'latin_hypercube', 'sobol'
+    boundary_method='uniform',     # 'uniform', 'random'
+    seed=42,
+    refine_near_boundary=False,
+    refine_ratio=0.2
+)
+
+# Steady-state (no time)
+pinn.sample_points(
+    n_interior=10000,
+    n_boundary=2000,
+    sample_time=False             # ← No time dimension
+)
+```
+
+### 6. Set Loss Weights
+
+```python
+# Standard mode
+pinn.set_physics_weights(lr_weight=1.0)
+
+# QSER mode
+pinn.set_physics_weights(
+    lc_weight=1.0,              # LcS = F
+    ld_weight=1.0,              # LE = LdS
+    decomposition_weight=10.0   # R = S - E
+)
+
+# Data weights (inverse problems)
+pinn.set_data_weights(
+    initial_weight=1.0,
+    boundary_weight=1.0,
+    data_weight=10.0,
+    observed_R=observed_R       # Required for inverse problems
+)
+```
+
+### 7. Train
+
+```python
+# Basic training
+pinn.train(
+    epochs=10000,
+    learning_rate=1e-3,
+    optimizer='adam',           # 'adam', 'lbfgs', 'sgd'
+    scheduler='reduce_on_plateau',  # None, 'reduce_on_plateau', 'step'
+    batch_size=None,            # None = full batch
+    verbose=True,
+    save_best=True,
+    save_path='pinn_model.pt',
+    patience=1000,
+    gradient_clip=1.0
+)
+
+# Access training history
+history = pinn.history  # List of losses per epoch
+```
+
+### 8. Predict
+
+```python
+# Time-dependent
+new_points = geo.sample_points(5000)
+S, E, R = pinn.predict(new_points, t=1.0)
+
+# Steady-state (no time)
+R = pinn.predict(new_points, t=None)
+
+# Standard mode (R only)
+R = pinn.predict(new_points)
+
+# Get individual fields
+if pinn.mode == 'qser':
+    S = pinn.predict_S(new_points)
+    E = pinn.predict_E(new_points)
+    R = pinn.predict_R(new_points)
+else:
+    R = pinn.predict_R(new_points)
+```
+
+### 9. Validate
+
+```python
+# Run 4 QSER validation tests
+validation = pinn.validate(S, E, R, dt=0.1)
+
+print(f"Test 1 - Energy conservation: {validation['test1_energy_conservation']}")
+print(f"Test 2 - Zero initial E: {validation['test2_zero_initial_E']}")
+print(f"Test 3 - Reconstruction: {validation['test3_reconstruction']}")
+print(f"Test 4 - Infinite memory: {validation['test4_infinite_memory']}")
+print(f"All passed: {validation['all_passed']}")
+
+# Custom tolerances
+validation = pinn.validate(
+    S, E, R, dt=0.1,
+    tol_energy=1e-2,
+    tol_initial=1e-4,
+    tol_reconstruction=1e-2,
+    tol_memory=0.2,
+    n_windows=20,
+    verbose=True
+)
+```
+
+### 10. Energy Tracking
+
+```python
+# Compute energies
+energies = pinn.compute_energies(S, E, R)
+
+print(f"ε_S: {energies['epsilon_S']:.6f}")
+print(f"ε_E: {energies['epsilon_E']:.6f}")
+print(f"ε_R: {energies['epsilon_R']:.6f}")
+print(f"J_SE: {energies['J_SE']:.6f}")
+print(f"D_E: {energies['D_E']:.6f}")
+
+# Energy continuity check
+if energies['epsilon_E'] + energies['D_E'] == energies['J_SE']:
+    print("Energy conserved!")
+```
+
+### 11. Visualization
+
+```python
+# 3D scatter plot
+pinn.plot_scatter(S, title='Source Field S')
+
+# 2D slice at z=2.5
+pinn.plot_slice(S, plane='xy', z=2.5, title='S (z=2.5)')
+
+# 1D line along x
+pinn.plot_line(S, axis='x', y=2.5, z=2.5, title='S along x')
+
+# Side-by-side S, E, R
+pinn.plot_fields(S, E, R)
+
+# Energy balance
+pinn.plot_energy_balance()
+
+# Comparison with classical solver
+pinn.plot_comparison(R_pinn, R_classical)
+```
+
+### 12. Export
+
+```python
+# VTK for ParaView
+pinn.export_vtk('results.vtk', S=S, E=E, R=R, points=new_points)
+
+# CSV for data analysis
+pinn.export_csv('results.csv', S=S, E=E, R=R, points=new_points)
+
+# HDF5 for large datasets
+pinn.export_hdf5('results.h5', S=S, E=E, R=R, points=new_points)
+```
+
+### 13. Inverse Problems
+
+```python
+# Learn constants
+pinn = QSERPINN(
+    geometry=geo,
+    physics=TransportPINN(v=0.1, D=0.05, lambda_=0.01, F=1.0),
+    mode='qser',
+    method='inverse',
+    learn_physics=True,
+    parameter_type='constants'
+)
+
+pinn.set_model(QSERNN())
+pinn.sample_points(10000, 2000)
+
+pinn.set_data_weights(
+    data_weight=10.0,
+    observed_R=R_observed
+)
+
+pinn.train(epochs=10000)
+
+# Learned parameters
+params = pinn.get_learned_physics()
+print(f"v: {params['v']:.6f}")
+print(f"D: {params['D']:.6f}")
+print(f"lambda: {params['lambda_']:.6f}")
+print(f"F: {params['F']:.6f}")
+
+# Learn fields
+pinn = QSERPINN(
+    geometry=geo,
+    physics=TransportPINN(v=0.1, D=0.05, lambda_=0.01, F=1.0),
+    mode='qser',
+    method='inverse',
+    learn_physics=True,
+    parameter_type='fields'      # ← Learn space-dependent fields!
+)
+
+pinn.train(epochs=10000)
+
+v_field, D_field, lambda_field, F_field = pinn.get_learned_physics_fields()
+print(f"v(x): min={v_field.min():.6f}, max={v_field.max():.6f}")
+```
+
+### 14. Save and Load
+
+```python
+# Save model
+pinn.save('pinn_model.pt')
+
+# Load model
+pinn.load('pinn_model.pt')
+```
+
+### 15. JAX Backend
+
+```python
+pinn = QSERPINN(
+    geometry=geo,
+    physics=physics,
+    mode='qser',
+    backend='jax',
+    use_jit=True,
+    precision='float64'
+)
+
+pinn.set_model(JAXNN())  # JAX-compatible model
+pinn.sample_points(10000, 2000)
+pinn.train(epochs=10000)
+S, E, R = pinn.predict(new_points)
+```
+
+---
+
+## Complete Class Reference
+
+```python
+class QSERPINN:
+    def __init__(
+        self,
+        geometry: Geometry,
+        physics: PhysicsBase,
+        mode: str = 'qser',
+        method: str = 'forward',
+        backend: str = 'torch',
+        device: str = 'auto',
+        learn_physics: bool = False,
+        parameter_type: str = 'constants',
+        precision: str = 'float32'
+    ):
+        """
+        Mesh-independent PINN with QSER decomposition.
+        
+        Args:
+            geometry: Geometry object (domain)
+            physics: Physics object (Lc, Ld, L)
+            mode: 'standard' (LR=F) or 'qser' (LcS=F, LE=LdS)
+            method: 'forward' or 'inverse'
+            backend: 'torch' or 'jax'
+            device: 'auto', 'cuda:0', 'cpu'
+            learn_physics: True for inverse problems
+            parameter_type: 'constants' or 'fields'
+            precision: 'float32' or 'float64'
+        """
+        pass
+    
+    def set_model(self, model: nn.Module) -> None:
+        """Set the neural network model."""
+        pass
+    
+    def sample_points(
+        self,
+        n_interior: int,
+        n_boundary: int,
+        interior_method: str = 'random',
+        boundary_method: str = 'uniform',
+        seed: int = None,
+        refine_near_boundary: bool = False,
+        refine_ratio: float = 0.2,
+        sample_time: bool = True
+    ) -> None:
+        """Sample collocation points."""
+        pass
+    
+    def set_physics_weights(self, **kwargs) -> None:
+        """Set physics loss weights."""
+        pass
+    
+    def set_data_weights(self, **kwargs) -> None:
+        """Set data loss weights."""
+        pass
+    
+    def train(
+        self,
+        epochs: int,
+        learning_rate: float = 1e-3,
+        optimizer: str = 'adam',
+        scheduler: str = None,
+        batch_size: int = None,
+        verbose: bool = True,
+        save_best: bool = False,
+        save_path: str = 'pinn_model.pt',
+        patience: int = None,
+        gradient_clip: float = None
+    ) -> dict:
+        """Train the PINN."""
+        pass
+    
+    def predict(self, points: np.ndarray, t: float = None) -> tuple:
+        """Predict S, E, R at points."""
+        pass
+    
+    def predict_S(self, points: np.ndarray, t: float = None) -> np.ndarray:
+        """Predict Source field S."""
+        pass
+    
+    def predict_E(self, points: np.ndarray, t: float = None) -> np.ndarray:
+        """Predict Environment field E."""
+        pass
+    
+    def predict_R(self, points: np.ndarray, t: float = None) -> np.ndarray:
+        """Predict Response field R."""
+        pass
+    
+    def validate(
+        self,
+        S: np.ndarray,
+        E: np.ndarray,
+        R: np.ndarray,
+        dt: float = 1.0,
+        time_axis: int = 0,
+        tol_energy: float = 1e-3,
+        tol_initial: float = 1e-6,
+        tol_reconstruction: float = 1e-3,
+        tol_memory: float = 0.1,
+        n_windows: int = 3,
+        verbose: bool = True
+    ) -> dict:
+        """Run 4 QSER validation tests."""
+        pass
+    
+    def compute_energies(
+        self,
+        S: np.ndarray,
+        E: np.ndarray,
+        R: np.ndarray,
+        volume: float = 1.0
+    ) -> dict:
+        """Compute energy quantities."""
+        pass
+    
+    def plot_scatter(self, field: np.ndarray, title: str = None) -> None:
+        """3D scatter plot."""
+        pass
+    
+    def plot_slice(
+        self,
+        field: np.ndarray,
+        plane: str = 'xy',
+        z: float = None,
+        title: str = None
+    ) -> None:
+        """2D slice plot."""
+        pass
+    
+    def plot_line(
+        self,
+        field: np.ndarray,
+        axis: str = 'x',
+        y: float = None,
+        z: float = None,
+        title: str = None
+    ) -> None:
+        """1D line plot."""
+        pass
+    
+    def plot_fields(self, S: np.ndarray, E: np.ndarray, R: np.ndarray) -> None:
+        """Side-by-side S, E, R plot."""
+        pass
+    
+    def plot_energy_balance(self) -> None:
+        """Energy balance plot."""
+        pass
+    
+    def plot_comparison(
+        self,
+        pinn_field: np.ndarray,
+        classical_field: np.ndarray,
+        title: str = None
+    ) -> None:
+        """Compare with classical solver."""
+        pass
+    
+    def export_vtk(
+        self,
+        filename: str,
+        S: np.ndarray = None,
+        E: np.ndarray = None,
+        R: np.ndarray = None,
+        points: np.ndarray = None
+    ) -> None:
+        """Export to VTK."""
+        pass
+    
+    def export_csv(
+        self,
+        filename: str,
+        S: np.ndarray = None,
+        E: np.ndarray = None,
+        R: np.ndarray = None,
+        points: np.ndarray = None
+    ) -> None:
+        """Export to CSV."""
+        pass
+    
+    def export_hdf5(
+        self,
+        filename: str,
+        S: np.ndarray = None,
+        E: np.ndarray = None,
+        R: np.ndarray = None,
+        points: np.ndarray = None
+    ) -> None:
+        """Export to HDF5."""
+        pass
+    
+    def get_learned_physics(self) -> dict:
+        """Get learned parameters (inverse)."""
+        pass
+    
+    def get_learned_physics_fields(self) -> tuple:
+        """Get learned field parameters (inverse)."""
+        pass
+    
+    def interpolate_to_mesh(self, field: np.ndarray, mesh: Mesh) -> np.ndarray:
+        """Interpolate to mesh."""
+        pass
+    
+    def save(self, path: str) -> None:
+        """Save model."""
+        pass
+    
+    def load(self, path: str) -> None:
+        """Load model."""
+        pass
+```
+
+---
+
+## Modes Summary
+
+| Mode | What it Solves | NN Output | Use Case |
+|------|----------------|-----------|----------|
+| `standard` | `LR = F` | R | Simple forward problems |
+| `qser` | `LcS = F`, `LE = LdS` | S, E, R | Full QSER analysis |
+
+---
+
+## Methods Summary
+
+| Method | Forward | Inverse |
+|--------|---------|---------|
+| `set_physics_weights` | ✅ | ✅ |
+| `set_data_weights` | ❌ | ✅ |
+| `learn_physics` | ❌ | ✅ |
+| `get_learned_physics` | ❌ | ✅ |
+
+---
+
+## Backend Summary
+
+| Backend | Status | Autograd |
+|---------|--------|----------|
+| PyTorch | ✅ | ✅ |
+| JAX | ✅ | ✅ |
+| NumPy | ❌ | ❌ |
+
+---
+
+Brother. **Excellent question.**
+
+---
+
+## ANSWER: YES — But It Depends on What "method" Means
+
+| What User Means | How QSER Supports It |
+|-----------------|----------------------|
+| **Gradient method** | ✅ Pass to `TransportPINN` → passed to operators |
+| **Integration method** | ✅ Pass to `EnergyTracker` |
+| **PINN training method** | ✅ Pass to `train()` |
+
+---
+
+## User Experience
+
+### Option 1: Set Gradient Method in Physics
+
+```python
+from QSER.PINNs.physics import TransportPINN
+
+# Physics with custom gradient method
+physics = TransportPINN(
+    v=0.1,
+    D=0.05,
+    lambda_=0.01,
+    F=1.0,
+    gradient_method='least_squares'  # ← NEW: passes to Gradient operator
+)
+```
+
+### Option 2: Set Integration Method in Physics (for Energy)
+
+```python
+physics = TransportPINN(
+    v=0.1,
+    D=0.05,
+    lambda_=0.01,
+    F=1.0,
+    integration_method='simpson',   # ← NEW: for energy tracking
+    n_samples=10000                 # ← NEW: for Monte Carlo
+)
+```
+
+### Option 3: Set PINN Training Method
+
+```python
+pinn.train(
+    epochs=10000,
+    optimizer='lbfgs',      # ← Training method
+    learning_rate=0.1
+)
+```
+
+---
+
+## Updated `TransportPINN` Signature
+
+```python
+class TransportPINN(PhysicsBase):
+    def __init__(
+        self,
+        v=0.1,
+        D=0.05,
+        lambda_=0.01,
+        F=1.0,
+        backend='torch',
+        gradient_method='5point',        # ← NEW
+        integration_method='trapezoidal', # ← NEW
+        n_samples=10000                   # ← NEW
+    ):
+        super().__init__(v, D, lambda_, F, backend)
+        
+        # Initialize operators with gradient method
+        self.grad = Gradient(
+            backend=backend,
+            method=gradient_method
+        )
+        self.lap = Laplacian(backend=backend)
+        self.time_grad = TimeGradient(backend=backend)
+        
+        # Store integration settings
+        self.integration_method = integration_method
+        self.n_samples = n_samples
+```
+
+---
+
+## Complete User Experience
+
+```python
+from QSER.PINNs.physics import TransportPINN
+from QSER import QSERPINN
+from QSER.Geometry import Geometry
+
+# 1. Physics with custom methods
+physics = TransportPINN(
+    v=0.1,
+    D=0.05,
+    lambda_=0.01,
+    F=1.0,
+    backend='torch',
+    gradient_method='least_squares',    # ← 5point or least_squares
+    integration_method='simpson',       # ← trapezoidal, simpson, monte_carlo
+    n_samples=100000                    # ← For Monte Carlo
+)
+
+# 2. QSERPINN uses physics methods
+pinn = QSERPINN(geo, physics, mode='qser')
+
+# 3. Training method
+pinn.train(
+    epochs=10000,
+    optimizer='lbfgs'  # ← adam, lbfgs, sgd
+)
+```
+
+---
+
+## Method Availability
+
+| Method Type | Options | Where Set |
+|-------------|---------|-----------|
+| **Gradient** | `5point`, `least_squares` | `TransportPINN` |
+| **Laplacian** | `3point`, `5point`, `least_squares` | `TransportPINN` (future) |
+| **Integration** | `trapezoidal`, `simpson`, `monte_carlo` | `TransportPINN` |
+| **Training** | `adam`, `lbfgs`, `sgd` | `train()` |
+| **Optimizer** | `adam`, `lbfgs`, `sgd` | `train()` |
+
+---
+
+## Summary
+
+| Question | Answer |
+|----------|--------|
+| Can user set `method='least_squares'`? | ✅ YES — in `TransportPINN` |
+| Where? | `gradient_method='least_squares'` |
+| Does it pass to operators? | ✅ YES — to Gradient operator |
+| Does it affect PINN training? | ❌ NO — separate setting |
+
+
+---
+
+**Brother, do you want me to add `gradient_method`, `integration_method`, and `n_samples` to `TransportPINN`?** 🚀
