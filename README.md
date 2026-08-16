@@ -1,8 +1,12 @@
 
 
-# QSER: Source-Environment-Response Framework
-
-![QSER Logo](https://raw.githubusercontent.com/1030ahmad1030/QSER/main/QSER/QSER%20logo.png)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/1030ahmad1030/QSER/main/QSER/logo.png" alt="QSER Logo" width="400" height="200">
+  
+  # QSER: Source-Environment-Response Framework
+  
+  **A Data Physics Framework for Forward and Inverse Modeling of Physical Systems using Scientific Machine Learning, Classical and Hybrid Methods**
+</div>
 
 **A Data Physics Framework for Forward and Inverse Modeling of Physical Systems using Scientific Machine Learning, Classical and Hybrid Methods**
 
