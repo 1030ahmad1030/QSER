@@ -2,7 +2,7 @@
 
 # QSER: Source-Environment-Response Framework
 
-![QSER Logo](https://raw.githubusercontent.com/1030ahmad1030/QSER/main/https://raw.githubusercontent.com/1030ahmad1030/QSER/master/QSER/logo.png)
+![QSER Logo](https://raw.githubusercontent.com/1030ahmad1030/QSER/main/QSER/QSER%20logo.png)
 
 **A Data Physics Framework for Forward and Inverse Modeling of Physical Systems using Scientific Machine Learning, Classical and Hybrid Methods**
 
@@ -11,6 +11,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![Website](https://img.shields.io/badge/Website-ahmadmuhammad325.com-blue)](https://ahmadmuhammad325.com/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21965738.svg)](https://doi.org/10.5281/zenodo.21965738)
 
 ---
 
@@ -203,13 +204,13 @@ This project is licensed under the **MIT License**.
 
 If you use QSER in your research, please cite:
 
-```bibtex
-@software{muhammad2026qser,
+```@software{muhammad2026qser,
   author = {Muhammad, Ahmad and K\"ulahc{\i}, Fatih},
   title = {QSER: A Data Physics Framework for Forward and Inverse Modeling of Physical Systems},
   year = {2026},
   url = {https://github.com/1030ahmad1030/QSER},
-  version = {1.0.0}
+  version = {1.0.0},
+  doi = {10.5281/zenodo.21965738}
 }
 ```
 
