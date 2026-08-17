@@ -1,7 +1,7 @@
 
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/1030ahmad1030/QSER/main/QSER/logo.png" alt="QSER Logo" width="400" height="200">
+  <img src="https://raw.githubusercontent.com/1030ahmad1030/QSER/main/QSER/logo.png" alt="QSER Logo" width="900" height="450">
   
   # QSER: Source-Environment-Response Framework
   
